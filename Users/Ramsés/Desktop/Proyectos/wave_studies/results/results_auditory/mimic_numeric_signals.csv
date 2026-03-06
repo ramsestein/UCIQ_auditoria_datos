@@ -1,0 +1,88 @@
+signal,n_records_present,units
+ICP,412,mmHg
+II,365,"uV, mV"
+ABP,306,mmHg
+RESP,304,"NU, pm"
+PLETH,299,NU
+V,292,"uV, mV"
+AVR,253,"uV, mV"
+Count,161,"?, pm"
+CVP,98,mmHg
+Percent,64,%
+III,52,"uV, mV"
+Sys,24,mmHg
+Max,24,unknown
+Min,24,unknown
+Mean,24,mmHg
+Dias,24,mmHg
+PULSE,21,bpm
+HR,21,bpm
+Status,20,?
+SYS,20,mmHg
+DIAS,20,mmHg
+MEAN,20,mmHg
+MCL,18,"uV, mV"
+I,14,"uV, mV"
+SpO2,13,%
+CPP,11,"unknown, ?"
+Minute,10,pm
+ART,9,mmHg
+Signal,8,unknown
+[63131],8,unknown
+%SpO2,8,%
+ST-V,8,unknown
+ST-III,8,unknown
+Variability,8,unknown
+Run,8,unknown
+PlsNBP,6,bpm
+IC2,6,unknown
+UAP,4,mmHg
+PAP,4,mmHg
+CO2,4,%
+NBP,4,mmHg
+EtCO2,3,unknown
+IMCO2,3,unknown
+AVF,3,"uV, mV"
+ABPSys,2,mmHg
+ABPDias,2,mmHg
+ABPMean,2,mmHg
+AWRR,2,unknown
+PAPSys,2,mmHg
+PAPMean,2,mmHg
+PAPDias,2,mmHg
+ST_I,2,mV
+ST_II,2,mV
+ST_III,2,mV
+ST_AVR,2,mV
+Trect,2,unknown
+T1,2,unknown
+NBPSys,2,mmHg
+NBPDias,2,mmHg
+PAWP,2,mmHg
+NBPMean,2,mmHg
+CO,2,Lpm
+SpO2_AP,2,%
+ST_AVL,2,mV
+ST_AVF,2,mV
+ST_V1,2,mV
+ST_V2,2,mV
+ST_V3,2,mV
+ST_V4,2,mV
+ST_V5,2,mV
+ST_V6,2,mV
+AVL,2,uV
+IC1,1,unknown
+CVP_2/3,1,mmHg
+CVP_1/3,1,mmHg
+P1,1,mmHg
+CVP_3/3,1,mmHg
+AOBP,1,mmHg
+BLOODT,1,?
+ST-II,1,unknown
+ST-I,1,unknown
+ST-aVR,1,unknown
+ST-aVL,1,unknown
+ST-MCL,1,unknown
+ST-aVF,1,unknown
+Tesoph,1,unknown
+Tcereb,1,unknown

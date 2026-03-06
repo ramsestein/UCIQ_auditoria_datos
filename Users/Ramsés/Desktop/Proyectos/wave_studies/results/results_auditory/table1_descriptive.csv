@@ -1,0 +1,62 @@
+Category,Variable,Value
+Dataset Characteristics,,
+,Collection period,2024-05-29 to 2026-02-12
+,"Total monitoring files, n","5,807"
+,"Unique filenames, n","5,229"
+,"Bedside monitors (boxes), n",13
+,Total monitoring hours,"23,203.6"
+,"Session duration, mean ± SD (min)",254.5 ± 461.1
+,"Session duration, median [IQR] (min)",71.0 [17.8–263.4]
+,"Session duration, range (min)",0.0–7714.3
+,"Micro sessions (<5 min), %",1.6
+,"Short sessions (5–30 min), %",32.7
+,"Standard sessions (30–60 min), %",12.0
+,"Long sessions (1–4 h), %",27.2
+,"Extended sessions (>4 h), %",26.5
+,"Tracks per file, median [IQR]",22 [14–26]
+Signal Availability,,
+,"ECG (any lead), n (%)","5,456 (94.0%)"
+,"SpO2 / Plethysmography, n (%)","5,456 (94.0%)"
+,"Arterial blood pressure, n (%)","2,808 (48.4%)"
+,"Capnography (CO2), n (%)","1,320 (22.7%)"
+,"Hemodynamics (CVP/PAP/CO), n (%)","1,337 (23.0%)"
+,"Neurological (ICP/EEG), n (%)","1,582 (27.2%)"
+,"Ventilation parameters, n (%)",982 (16.9%)
+,"BIS / Depth of anesthesia, n (%)",399 (6.9%)
+,"Temperature, n (%)",101 (1.7%)
+,"Complexity score, median [IQR]",2 [1–3]
+Sampling Rates,,
+,ECG waveform (Lead II) (Hz),500.0
+,ECG waveform (Lead III) (Hz),500.0
+,Plethysmography waveform (Hz),125.0
+,Respiration waveform (Hz),62.5
+,"Numeric trends (HR, SpO2, etc.) (Hz)",1.0
+,"Unique track types, n",80
+,"Waveform tracks (>10 Hz), n",17
+,"Numeric trend tracks (≤10 Hz), n",63
+Data Quality,,
+,"Files with quality assessment, n","5,461"
+,"Signal completeness (% non-NaN), mean ± SD",84.6 ± 24.5
+,"Signal completeness, median [IQR]",95.7 [83.1–99.5]
+,"Signal variability (std), mean ± SD",6.5 ± 44.1
+,"Flatline percentage, mean ± SD",0.9 ± 9.6
+,"Files with >90% completeness, %",66.8
+,"Files with >0% flatline, %",1.2
+Artifact Detection,,
+,"Signals analyzed, n",18
+,Heart Rate (ECG) artifact rate (%),0.010
+,SpO2 artifact rate (%),0.006
+,Respiratory Rate artifact rate (%),0.741
+,Arterial MAP artifact rate (%),0.190
+,Arterial BP Systolic artifact rate (%),0.018
+,Temperature artifact rate (%),6.426
+Temporal Gaps,,
+,"Inter-session gaps, n","5,458"
+,"Gap duration, median (h)",0.0
+,"Gap duration, mean (h)",16.4
+,"Gap duration, P90 (h)",24.0
+Per-Box Summary,,
+,"Files per box, median [IQR]",371 [294–510]
+,"Hours per box, median [IQR]",1420 [1127–2156]
+,Most active box (files),"box14 (n=1,235)"
+,Least active box (files),box11 (n=64)
