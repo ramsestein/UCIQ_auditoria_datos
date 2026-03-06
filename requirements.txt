@@ -1,0 +1,6 @@
+vitaldb
+pandas
+numpy
+matplotlib
+scikit-learn
+wfdb

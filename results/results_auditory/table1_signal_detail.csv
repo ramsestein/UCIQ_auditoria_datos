@@ -1,0 +1,10 @@
+Signal Category,N files,Overall %,Box range %,Artifact rate
+ECG (any lead),5456,94.0,98.8–100.0%,0.010%
+SpO2 / Plethysmography,5456,94.0,98.8–100.0%,0.006%
+Arterial blood pressure,2808,48.4,28.1–77.2%,0.190%
+Capnography (CO2),1320,22.7,6.6–43.8%,N/A
+Hemodynamics (CVP/PAP/CO),1337,23.0,7.1–43.8%,N/A
+Neurological (ICP/EEG),1582,27.2,7.8–60.6%,N/A
+Ventilation parameters,982,16.9,3.0–33.6%,N/A
+BIS / Depth of anesthesia,399,6.9,1.6–14.3%,N/A
+Temperature,101,1.7,0.0–10.0%,6.426%

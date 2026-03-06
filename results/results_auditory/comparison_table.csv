@@ -1,0 +1,18 @@
+Characteristic,Clinical (This Study),MIMIC-IV Waveform (N=200)
+Total records/files,"5,807",200 (198 patients)
+Total monitoring hours,"23,203.6",173.8*
+Median session (min),71.0,4074.2*
+Monitoring sources,13 bedside monitors (GE CARESCAPE),BIDMC ICU bedside monitors
+Data format,.vital (VitalDB binary),WFDB multi-segment (.hea/.dat)
+ECG sampling rate (Hz),500,250
+SpO2/Pleth sampling rate (Hz),125,125
+Signal: ECG availability,94.0%,99.0% (198/200)
+Signal: SPO2 availability,94.0%,98.0% (196/200)
+Signal: ART availability,48.4%,29.0% (58/200)
+Signal: RESP availability,93.4%,99.5% (199/200)
+Signal: CO2 availability,22.7%,0.5% (1/200)
+Signal: ICP availability,20.1%,3.5% (7/200)
+Signal: NIBP availability,N/A,Not available
+Signal: TEMP availability,1.7%,Not available
+Signal: BIS availability,6.9%,Not available
+Unique signal types,80,29
