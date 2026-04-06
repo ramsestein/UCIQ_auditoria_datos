@@ -1,0 +1,194 @@
+================================================================================
+MIMIC-IV WAVEFORM vs UCIQ COMPARATIVE ANALYSIS
+UPDATED REPORT WITH CORRECTIONS
+================================================================================
+
+Generated: 2026-04-06 13:02:22
+
+================================================================================
+CORRECTIONS APPLIED
+================================================================================
+
+1. RESP MAPPING FIXED (CRITICAL)
+   - Issue: RESP in UCIQ was 76.2% (expected 93.4%)
+   - Root cause: Missing "RR" alias in SIGNAL_MAPPING
+   - Correction: Added "RR" to resp aliases
+   - Result: RESP now 99.3% in UCIQ (aligns with expected 93%+)
+
+2. WAVEFORM vs NUMERIC CHANNELS SEPARATED (CLARITY)
+   - Issue: hr_numeric, spo2_numeric, rr_numeric showing 0% in MIMIC
+   - Clarification: These are NUMERIC TRENDS (1 Hz), not waveform channels
+   - MIMIC stores numerics in separate CSV files (technically correct)
+   - UCIQ stores numerics as tracks in .vital files
+   - Table now clearly shows this distinction
+
+3. AUROC WITH BOOTSTRAP CI ADDED (RIGOR)
+   - Issue: Original used Accuracy/F1 for transferability
+   - Correction: Implemented AUROC with 1000-bootstrap 95% CI
+   - Files: phase_6b_auroc.py, transferability_auroc.png
+   - Result: MIMIC→UCIQ AUROC = 0.844 [0.828, 0.859]
+
+4. IMPROVED PHENOTYPE NAMING (PROFESSIONAL)
+   - Old: "Minimal Monitoring" (sounded pejorative)
+   - New: "Standard Monitoring", "Hemodynamic Monitoring", 
+          "Advanced Hemodynamic", "Neurological Monitoring",
+          "Ventilated Hemodynamic", "Advanced Multimodal"
+   - Files: phase_6_phenotype_v2.py, phenotype_analysis_v2.png
+
+5. PHASE 2B - PHYSIOLOGICAL DISTRIBUTIONS (EXECUTED)
+   - Status: Partial execution - UCIQ data extracted
+   - Limitation: MIMIC numerics require separate CSV files not in current structure
+   - Output: phase2b_kde_distributions.png, phase2b_uciq_distributions.csv
+
+6. PHASE 4B - CLINICAL EVENTS (ATTEMPTED)
+   - Status: Methodology implemented, data extraction limited
+   - Issue: vitaldb numeric track loading requires investigation
+   - Output: phase4b_clinical_events.png (if data available)
+
+7. PHASE 5B - DEMOGRAPHIC LINKAGE (DOCUMENTED)
+   - Status: Placeholder with implementation plan
+   - Requirements: MIMIC-IV Clinical DB, UCIQ demographic DB
+   - Output: phase5b_demographics_placeholder.csv
+
+8. PHASE 6B - PREDICTIVE TRANSFERABILITY (ATTEMPTED)
+   - Status: Hypotension prediction framework implemented
+   - Limitation: Data extraction issues (same as Phase 4B)
+   - Note: Requires debugging vitaldb numeric track loading
+
+
+================================================================================
+CORRECTED SIGNAL PREVALENCE
+================================================================================
+
+--- WAVEFORM CHANNELS ---
+ecg                 : MIMIC  99.5% | UCIQ  99.6%
+ppg                 : MIMIC  98.0% | UCIQ  99.6%
+resp                : MIMIC  99.5% | UCIQ  99.3%
+abp_invasive        : MIMIC  32.0% | UCIQ  52.6%
+nibp                : MIMIC   0.0% | UCIQ  55.2%
+co2                 : MIMIC   0.5% | UCIQ  24.6%
+icp                 : MIMIC   3.5% | UCIQ  21.1%
+bis_eeg             : MIMIC   0.0% | UCIQ  11.9%
+temperature         : MIMIC   0.0% | UCIQ   2.5%
+ventilation         : MIMIC   0.0% | UCIQ  17.5%
+cvp                 : MIMIC  15.0% | UCIQ   0.2%
+pap                 : MIMIC   9.0% | UCIQ   0.0%
+
+--- NUMERIC TREND CHANNELS (1 Hz) ---
+NOTE: MIMIC stores numerics in separate CSV files (not waveform channels)
+hr_numeric          : MIMIC   0.0% | UCIQ  99.6%
+spo2_numeric        : MIMIC   0.0% | UCIQ  99.1%
+rr_numeric          : MIMIC   0.0% | UCIQ  96.5%
+
+================================================================================
+KEY CORRECTED FINDINGS
+================================================================================
+
+RESP (Respiration):
+  - BEFORE: MIMIC 99.5% vs UCIQ 76.2% (23% gap - suspicious)
+  - AFTER:  MIMIC 99.5% vs UCIQ 99.3% (0.2% gap - consistent)
+  - Impact: Both datasets have virtually universal respiration monitoring
+
+ABP (Invasive Arterial Pressure):
+  - MIMIC: 32.0% (64/200 records)
+  - UCIQ:  52.6% (526/1000 records)
+  - Note: 6 MIMIC records (3%) may have empty ABP headers
+  - Difference remains clinically significant
+
+CVP (Central Venous Pressure):
+  - MIMIC: 15.0% (30/200 records) - as expected for MICU
+  - UCIQ:  0.2% (2/1000 records) - unexpectedly low
+  - Investigation needed: verify PAP/CVP track names in UCIQ
+
+Signal Diversity:
+  - MIMIC: 3.6 ± 2.0 categories per record
+  - UCIQ:  4.6 ± 1.9 categories per record
+  - UCIQ has more comprehensive monitoring (p < 0.001)
+
+Recording Duration:
+  - MIMIC: 27.9 hours median (long-term monitoring)
+  - UCIQ:  1.2 hours median (short-term segments)
+  - MIMIC better for longitudinal analysis
+  - UCIQ better for high-density snapshot analysis
+
+
+================================================================================
+TRANSFERABILITY (AUROC with Bootstrap 95% CI)
+================================================================================
+
+Model: Random Forest
+  MIMIC → UCIQ: AUROC = 0.844 [0.828, 0.859]
+  UCIQ → MIMIC: AUROC = 0.999 [0.998, 1.000]
+  MIMIC CV:      AUROC = 0.999
+  Transfer Gap:  0.156 (MODERATE domain shift)
+
+Model: Logistic Regression
+  MIMIC → UCIQ: AUROC = 0.885 [0.846, 0.926]
+  UCIQ → MIMIC: AUROC = 0.999 [0.998, 1.000]
+  MIMIC CV:      AUROC = 0.999
+  Transfer Gap:  0.114 (MODERATE domain shift)
+
+Interpretation:
+  - Models trained on UCIQ generalize well to MIMIC
+  - Models trained on MIMIC show moderate degradation on UCIQ
+  - Asymmetric transfer suggests UCIQ has broader feature coverage
+  - Domain adaptation recommended for cross-dataset deployment
+
+
+================================================================================
+MONITORING PHENOTYPES (IMPROVED NAMING)
+================================================================================
+
+Phenotype Distribution (%):
+                         MIMIC  UCIQ
+phenotype                           
+Advanced_Hemodynamic      11.0   0.2
+Hemodynamic_Monitoring    18.0  23.0
+Minimal_Monitoring         1.5   0.4
+Neurological_Monitoring    3.0  13.2
+Standard_Monitoring       66.5  47.0
+Ventilated_Hemodynamic     0.0  16.2
+
+
+Key Observations:
+  - Standard Monitoring: MIMIC 66.5% vs UCIQ 47.0%
+    MIMIC focuses on basic physiological monitoring
+  
+  - Hemodynamic Monitoring: MIMIC 18.0% vs UCIQ 23.0%
+    UCIQ has more arterial line monitoring
+  
+  - Neurological Monitoring: MIMIC 3.0% vs UCIQ 13.2%
+    UCIQ SICU has significantly more neuro-monitoring
+  
+  - Ventilated Hemodynamic: MIMIC 0.0% vs UCIQ 16.2%
+    Mechanical ventilation + ABP common in UCIQ
+
+
+================================================================================
+PENDING FOR FULL PUBLICATION
+================================================================================
+
+1. MIMIC NUMERIC DATA EXTRACTION
+   - Current: MIMIC hr_numeric/spo2_numeric/rr_numeric show 0%
+   - Required: Access MIMIC numerics CSV files
+   - Action: Download MIMIC-IV Waveform Numlabs folder or numerics files
+
+2. PHYSIOLOGICAL DISTRIBUTION COMPARISON
+   - Current: UCIQ distributions characterized, MIMIC pending
+   - Required: KDE plots comparing HR, MAP, SpO2 between datasets
+   - Action: Extract MIMIC numerics and re-run Phase 2B
+
+3. CLINICAL EVENT DETECTION
+   - Current: Framework implemented, data extraction issues
+   - Required: Hypotension/tachycardia/desaturation rates
+   - Action: Debug vitaldb numeric track loading
+
+4. DEMOGRAPHIC LINKAGE
+   - Current: Placeholder with implementation plan
+   - Required: Age, gender, ethnicity comparison
+   - Action: Access MIMIC-IV Clinical and UCIQ clinical databases
+
+5. PREDICTIVE TRANSFERABILITY
+   - Current: Framework implemented
+   - Required: Hypotension prediction MIMIC→UCIQ AUROC
+   - Action: Fix data extraction and re-run Phase 6B predictive

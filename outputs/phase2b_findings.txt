@@ -1,0 +1,26 @@
+PHASE 2B: PHYSIOLOGICAL COMPARISON FINDINGS
+======================================================================
+
+MIMIC-IV WAVEFORM:
+  Numeric channels are present in SOME records:
+    HR: 21 records
+    PULSE: 21 records
+    SpO2: 13 records
+    ABPm/Mean: 24 records
+
+  Issue: These are embedded in waveform segments, not easily extractable
+  Solution: Use MIMIC-IV Clinical DB (separate CSV) or remote access
+
+UCIQ:
+  Numeric trends readily available from .vital files
+    HR: ECG_HR (94%+ prevalence)
+    SpO2: PLETH_SAT_O2 (94%+ prevalence)
+    RR: RR (99.3% prevalence)
+    ABPm: ABP_MEAN (52.6% prevalence)
+
+  Prevalence: HR/SpO2 ~94%, RR ~99%, ABP ~53%
+
+KEY DIFFERENCES:
+  - MIMIC: Waveform-heavy (ECG/Pleth/Resp at 62-250 Hz)
+  - UCIQ: Numeric-heavy (1 Hz trends for all vitals)
+  - Direct comparison requires processing MIMIC waveforms

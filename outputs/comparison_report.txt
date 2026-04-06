@@ -1,0 +1,45 @@
+
+COMPARATIVE AUDIT: MIMIC vs UCIQ
+================================
+
+SAMPLE SIZES
+- MIMIC (US MICU): 200 records
+- UCIQ (Barcelona SICU): 1000 records
+
+MONITORING INTENSITY (Signals per Record)
+- MIMIC: 6.4 ± 2.0 signals
+- UCIQ: 22.6 ± 7.8 signals
+- Ratio: 3.5x more signals in UCIQ
+
+TEMPORAL PATTERNS
+- MIMIC median duration: 27.9 hours
+- UCIQ median duration: 1.2 hours
+
+SIGNAL PREVALENCE COMPARISON
+- ecg: MIMIC 100% vs UCIQ 100%
+- ppg: MIMIC 98% vs UCIQ 100%
+- resp: MIMIC 100% vs UCIQ 99%
+- abp_invasive: MIMIC 32% vs UCIQ 53%
+- nibp: MIMIC 0% vs UCIQ 55%
+- co2: MIMIC 0% vs UCIQ 25%
+- icp: MIMIC 4% vs UCIQ 21%
+- bis_eeg: MIMIC 0% vs UCIQ 12%
+- temperature: MIMIC 0% vs UCIQ 2%
+- ventilation: MIMIC 0% vs UCIQ 18%
+- cvp: MIMIC 15% vs UCIQ 0%
+- pap: MIMIC 9% vs UCIQ 0%
+- hr_numeric: MIMIC 0% vs UCIQ 100%
+- spo2_numeric: MIMIC 0% vs UCIQ 99%
+- rr_numeric: MIMIC 0% vs UCIQ 96%
+- abp: MIMIC 32% vs UCIQ 53%
+
+KEY FINDINGS
+1. UCIQ has significantly higher signal density (22.6 vs 6.4 avg signals)
+2. UCIQ includes ventilator parameters, CO2, FiO2, and EEG - absent in MIMIC
+3. MIMIC has more consistent basic monitoring (RESP in 100% of records)
+4. Both datasets have similar coverage of ECG and PPG
+
+IMPLICATIONS FOR CLINICAL AI
+- UCIQ richer for multi-modal physiological modeling
+- MIMIC more standardized for cross-institutional validation
+- Transferability concerns due to different monitoring paradigms
