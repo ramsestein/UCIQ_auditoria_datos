@@ -4,147 +4,147 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-> **Auditoría Comparativa entre MIMIC-IV Waveform (US MICU) y UCIQ (Barcelona SICU)**
+> **Comparative audit of MIMIC-IV Waveform (US MICU) and UCIQ (Barcelona SICU)**
 
-Este repositorio contiene una auditoría clínica comparativa entre dos bases de datos de waveform de UCI:
+This repository contains a comparative clinical audit of two ICU waveform databases:
 
-- **MIMIC-IV Waveform**: 200 registros, ~28 horas mediana, ICU médica (Boston, USA)
-- **UCIQ**: 1000 registros, ~1.2 horas mediana, ICU quirúrgica (Barcelona, España)
+- **MIMIC-IV Waveform**: 200 records, ~28 h median duration, medical ICU (Boston, USA)
+- **UCIQ**: 1,000 records, ~1.2 h median duration, surgical ICU (Barcelona, Spain)
 
-### Argumento Principal (3 Pilares)
+### Main argument (three pillars)
 
-1. **MONITORIZAMOS DIFERENTE** (Fenotipos χ²=115, p<0.001)
-   - MIMIC: 6.4 señales por registro (patrones heterogéneos)
-   - UCIQ: 22.6 señales por registro (patrones estandarizados)
+1. **WE MONITOR DIFFERENTLY** (phenotypes, χ² = 115, p < 0.001)
+   - MIMIC: 6.4 signals per record (heterogeneous patterns)
+   - UCIQ: 22.6 signals per record (standardised patterns)
 
-2. **LOS PACIENTES SON DIFERENTES** (Demografía Fase 5B)
-   - MIMIC: ICU general mixta, ~65 años
-   - UCIQ: UCI específica, ~58 años, European Mediterranean
+2. **THE PATIENTS ARE DIFFERENT** (demographics, Phase 5B)
+   - MIMIC: mixed general ICU, ~65 years
+   - UCIQ: specialty-specific ICU, ~58 years, Southern European / Mediterranean
 
-3. **LOS VALORES HEMODINÁMICOS SON DIFERENTES** (MAP Fase 2B)
-   - MIMIC: MAP 76.0 ± 22.1 mmHg, 36.5% hipotensión
-   - UCIQ: MAP 79.9 ± 11.9 mmHg, 9.9% hipotensión
-   - Diferencia: 3.7× más hipotensión en MIMIC (KS=0.306, p<0.001)
+3. **THE HAEMODYNAMIC VALUES ARE DIFFERENT** (MAP, Phase 2B)
+   - MIMIC: MAP 76.0 ± 22.1 mmHg, 36.5% hypotension
+   - UCIQ: MAP 79.9 ± 11.9 mmHg, 9.9% hypotension
+   - Difference: 3.7× more hypotension in MIMIC (KS = 0.306, p < 0.001)
 
-## 📁 Estructura del Repositorio
+## 📁 Repository structure
 
 ```
 auditoria/
-├── docs/                           # Documentación principal
-│   ├── UNIFIED_MASTER_DOCUMENT.txt # Documento maestro completo
-│   └── CORRECTIONS_SUMMARY.txt     # Resumen de correcciones
+├── docs/                           # Main documentation
+│   ├── UNIFIED_MASTER_DOCUMENT.txt # Full master document
+│   └── CORRECTIONS_SUMMARY.txt     # Summary of corrections
 │
-├── src/                            # Código fuente
-│   ├── auditory/                   # Scripts de auditoría clínica
+├── src/                            # Source code
+│   ├── auditory/                   # Clinical audit scripts
 │   │   ├── fix_numerics_extraction.py
 │   │   ├── compare_abp_distributions.py
 │   │   ├── generate_paper_summary.py
 │   │   └── ...
-│   └── analysis_clinic/            # Scripts de fases de análisis
+│   └── analysis_clinic/            # Analysis-phase scripts
 │       ├── phase_2b_physiological.py
 │       ├── phase_6_phenotype_v2.py
 │       ├── phase_6b_transferability.py
 │       └── ...
 │
-├── outputs/                        # Resultados y figuras
-│   ├── abp_map_comparison.png      # Comparación MAP
-│   ├── paper_summary_table.csv     # Tabla resumen 3 pilares
-│   ├── uciq_numerics_summary.csv   # Datos numéricos UCIQ
-│   └── mimic_numerics_summary.csv  # Datos numéricos MIMIC
+├── outputs/                        # Results and figures
+│   ├── abp_map_comparison.png      # MAP comparison
+│   ├── paper_summary_table.csv     # Three-pillar summary table
+│   ├── uciq_numerics_summary.csv   # UCIQ numeric data
+│   └── mimic_numerics_summary.csv  # MIMIC numeric data
 │
-├── results/                        # Resultados de auditoría
-│   └── results_auditory/           # Resultados detallados
+├── results/                        # Audit results
+│   └── results_auditory/           # Detailed results
 │
-└── scripts/                        # Scripts de utilidad
+└── scripts/                        # Utility scripts
     ├── check_mimic_channels.py
     ├── verify_abp.py
     └── ...
 ```
 
-## 🔧 Fases Completadas
+## 🔧 Completed phases
 
-### Fase 2B: Valores Fisiológicos ✅
-- Comparación de distribuciones MAP (Presión Arterial Media)
-- 256M+ muestras MIMIC vs 1.1M+ muestras UCIQ
-- KS test: p < 0.001 (diferencia highly significant)
+### Phase 2B: Physiological values ✅
+- Comparison of MAP (mean arterial pressure) distributions
+- 256M+ MIMIC samples vs 1.1M+ UCIQ samples
+- KS test: p < 0.001 (highly significant difference)
 
-### Fase 6: Fenotipos de Monitorización ✅
-- 6 fenotipos identificados (Standard, Hemodynamic, Neurological, etc.)
-- χ² = 115, p < 0.001 entre datasets
+### Phase 6: Monitoring phenotypes ✅
+- 6 phenotypes identified (Standard, Hemodynamic, Neurological, etc.)
+- χ² = 115, p < 0.001 between datasets
 
-### Fase 6B: Transferibilidad ✅
+### Phase 6B: Transferability ✅
 - AUROC MIMIC→UCIQ: 0.844 [0.828, 0.859]
 - AUROC UCIQ→MIMIC: 0.999 [0.998, 1.000]
-- Transfer gap: 0.156 (MODERATE domain shift)
+- Transfer gap: 0.156 (moderate domain shift)
 
-## 📈 Resultados Clave
+## 📈 Key results
 
-### Comparación de Prevalencia de Señales
-| Señal | MIMIC | UCIQ | Diferencia |
-|-------|-------|------|------------|
+### Signal prevalence comparison
+| Signal | MIMIC | UCIQ | Difference |
+|--------|-------|------|------------|
 | ECG | 99.5% | 99.6% | +0.1% |
 | RESP | 99.5% | 99.3% | -0.2% ✅ |
-| ABP (invasiva) | 32.0% | 52.6% | +20.6% |
+| ABP (invasive) | 32.0% | 52.6% | +20.6% |
 | ICP | 3.5% | 21.1% | +17.6% |
 | CO2 | 0.5% | 24.6% | +24.1% |
 
-### Fenotipos de Monitorización
-| Fenotipo | MIMIC | UCIQ |
-|----------|-------|------|
+### Monitoring phenotypes
+| Phenotype | MIMIC | UCIQ |
+|-----------|-------|------|
 | Standard_Monitoring | 66.5% | 47.0% |
 | Hemodynamic_Monitoring | 18.0% | 23.0% |
 | Neurological_Monitoring | 3.0% | 13.2% |
 | Ventilated_Hemodynamic | 0.0% | 16.2% |
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Requisitos
+### Requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### Ejecutar análisis de MAP
+### Run the MAP analysis
 ```bash
 python src/auditory/quick_abp_comparison.py
 ```
 
-### Generar resumen del paper
+### Generate the paper summary
 ```bash
 python src/auditory/generate_paper_summary.py
 ```
 
-## 📚 Documentos Principales
+## 📚 Key documents
 
-- **UNIFIED_MASTER_DOCUMENT.txt**: Documento completo con todos los hallazgos
-- **CORRECTIONS_SUMMARY.txt**: Resumen de correcciones críticas aplicadas
-- **paper_summary_table.csv**: Tabla resumen del argumento de 3 pilares
+- **UNIFIED_MASTER_DOCUMENT.txt**: Complete document with all findings
+- **CORRECTIONS_SUMMARY.txt**: Summary of the critical corrections applied
+- **paper_summary_table.csv**: Summary table for the three-pillar argument
 
-## 🔬 Hallazgos Críticos
+## 🔬 Critical findings
 
-1. **Corrección RESP**: Prevalencia UCIQ corregida de 76.2% a 99.3%
-2. **AUROC con Bootstrap**: Intervalos de confianza 95% implementados
-3. **MAP Comparison**: Diferencia fisiológica significativa identificada
+1. **RESP correction**: UCIQ prevalence corrected from 76.2% to 99.3%
+2. **Bootstrapped AUROC**: 95% confidence intervals implemented
+3. **MAP comparison**: significant physiological difference identified
 
-## 📖 Cita
+## 📖 Citation
 
-Si utilizas este análisis, por favor cita:
+If you use this analysis, please cite:
 
 ```
-Auditoría Comparativa MIMIC-IV vs UCIQ: Análisis de Transferibilidad
-de Modelos de ML en Datos de Waveform de UCI
+Comparative audit of MIMIC-IV vs UCIQ: transferability analysis
+of ML models on ICU waveform data
 ```
 
-## ⚠️ Limitaciones
+## ⚠️ Limitations
 
-- MIMIC: Datos numéricos HR/SpO2/RR no disponibles en archivos de waveform
-- Datos demográficos individuales no disponibles para linkage directo
+- MIMIC: HR/SpO2/RR numeric data are not available in the waveform files
+- Individual-level demographic data are not available for direct linkage
 
-## 🔗 Contacto
+## 🔗 Contact
 
-Para preguntas sobre este análisis de auditoría, referirse a los documentos
-en `docs/` o revisar el código en `src/`.
+For questions about this audit analysis, see the documents in `docs/`
+or review the code in `src/`.
 
 ---
 
-**Fecha**: 2026-04-06  
-**Versión**: 0.1
+**Date**: 2026-04-06  
+**Version**: 0.1
